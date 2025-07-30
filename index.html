@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Saya</title>
-  
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #1e293b;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --border-color: #334155;
+            --card-bg: rgba(30, 41, 59, 0.8);
+            --glass-bg: rgba(15, 23, 42, 0.8);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
         .navbar {
             margin-bottom: 20px;
         }
@@ -20,12 +50,7 @@
         .card {
             margin-bottom: 20px;
         }
-        body {
-            background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm222-mind-16_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=1c53e59a7b21c1ffee85bc36a3837392');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
+     
 
         #game-board {
     width: 300px;
@@ -121,7 +146,7 @@
             </div>
             <div class="col-md-8">
                 <h2>Akhmad Fa'iq Ismail</h2><br>
-                <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Halo! Selamat datang di dunia portofolio saya. Saya adalah mahasiswa di Politeknik Elektronika Negeri Surabaya (PENS), tengah menapaki semester keempat dalam program studi D3 Teknik Informatika. Seiring perjalanan akademik saya, saya telah menggali berbagai keahlian yang tercermin dalam portofolio saya</p>
+                <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Halo! Selamat datang di dunia portofolio saya. Saya adalah lulusan D3 Teknik Informatika dari Politeknik Elektronika Negeri Surabaya (PENS) yang antusias dalam bidang pemrograman, web development, dan dasar-dasar elektronika. Memiliki pengalaman mengikuti pelatihan bersertifikat serta menyelesaikan berbagai proyek digital dan praktik kerja lapangan di bidang elektronika dan IT. </p>
             </div>
         </div>
     </div><br><br><br>
@@ -129,12 +154,13 @@
     <div class="container mt-5" id="education">
         <h2 style="text-align:center;">Education</h2><br>
         <div class="row">
-            <div class="col-md-4 text-center">
+            
+            <div class="col-md-4 text-center" >
                 <img src="foto/logo smk.png" alt="Foto Sekolah"  width="150" class="img-fluid ">
             </div>
             <div class="col-md-8">
                 <h3>SMK Muhammadiyah 1 Gresik </h3>
-                <p><b>Lulusan Tahun:</b> 2021<br><b>Prodi:</b> Teknik Elektronika<br><b>Paket:</b> Teknik Audio Video</p>
+                <p><b>Lulusan Tahun:</b> 2022<br><b>Jurusan:</b> Teknik Audio Video</p>
                 <p></p>
             </div>
         </div><br><br>
@@ -144,72 +170,85 @@
             </div>
             <div class="col-md-8">
                 <h3>Politeknik Elektronika Negeri Surabaya</h3>
-                <p><b>Masuk Tahun:</b> 2022 <b><br>Departemen:</b> Teknik Informatika Dan Komputer<br><b>Prodi:</b> D3 Teknik Informatika (Kampus Sumenep)</p>
-                <p>Sekarang Masih Mahasiswa </p>
+                <p><b>Lulusan Tahun:</b> 2025 <b><br>Departemen:</b> Teknik Informatika Dan Komputer<br><b>Prodi:</b> D3 Teknik Informatika </p>
+            
             </div>
         </div>
     </div><br><br><br>
 
     <div class="container mt-5" id="portfolio">
-        <h1 style="text-align:center;">PORTOFOLIO</h1><br>
+        <h1 style="text-align:center;">SERTIFIKAT</h1><br>
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <img src="foto/Screenshot 2023-06-01 111835.png" class="card-img-top" alt="Proyek 1">
-                    <div class="card-body">
-                        <h5 class="card-title">SERTIFIKAT</h5>
-                        <p class="card-text">di dapatkan selama 3 bulan </p>
-                    </div>
+                
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <img src="foto/Screenshot 2023-07-08 160102.png" class="card-img-top" alt="Proyek 2">
-                    <div class="card-body">
-                        <h5 class="card-title">SERTIFIKAT</h5>
-                        <p class="card-text">di dapatkan selama 1 hari penuh </p>
-                    </div>
+                  
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="foto/Screenshot 2023-06-30 190122.png" class="card-img-top" alt="Proyek 3">
-                    <div class="card-body">
-                        <h5 class="card-title"> APLIKASI LAYANAN </h5>
-                        <p class="card-text">di kerjakan selama 1 minggu </p>
-                    </div>
+                    <img src="foto/sertif.jpg" class="card-img-top" alt="Proyek 3">
+                  
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="foto/Screenshot 2023-08-28 191655.png" class="card-img-top" alt="Proyek 4">
-                    <div class="card-body">
-                        <h5 class="card-title">SERTIFIKAT</h5>
-                        <p class="card-text"> di  dapatkan selama 1 hari</p>
-                    </div>
+                    <img src="foto/p1.jpg" class="card-img-top" alt="Proyek 4">
+                  
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <img src="foto/Screenshot 2023-08-28 191754.png" class="card-img-top" alt="Proyek 5">
-                    <div class="card-body">
-                        <h5 class="card-title">SERTIFIKAT</h5>
-                        <p class="card-text"> di dapatkan selama 2 bulan </p>
-                    </div>
+                   
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <img src="foto/Screenshot 2023-08-28 191735.png" class="card-img-top" alt="Proyek 6">
-                    <div class="card-body">
-                        <h5 class="card-title">SERTIFIKAT</h5>
-                        <p class="card-text"> di dapatkan selama 2 hari</p>
-                    </div>
+                   
                 </div>
             </div>
         </div>
     </div>
 
+
+    <div class="container mt-5" id="portfolio">
+        <h1 style="text-align:center;">Pengalaman Proyek</h1><br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="foto/ppp.png" class="card-img-top" alt="Proyek 1">
+                   
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="foto/PENGADUAN.png" class="card-img-top" alt="Proyek 2">
+                   
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="foto/BROSUR.png" class="card-img-top" alt="Proyek 3">
+                   
+                </div>
+            </div>
+           
+           
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
     <div class="container mt-5" id="snake-game">
         <h2 style="text-align:center;">Snake Game</h2><br>
         <div class="snake-game-container">
@@ -233,7 +272,7 @@
     </div>
 
     <br><br><br><br>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
