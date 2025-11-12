@@ -418,29 +418,31 @@
         const playPrompt = document.getElementById('playPrompt');
         let isPlaying = false;
 
-        function startExperience() {
-            playPrompt.classList.add('hidden');
-            
-            // Play musik dengan penanganan error yang lebih baik
+    function startExperience() {
+    // Tutup tampilan awal
+    playPrompt.classList.add('hidden');
+
+    // Langsung coba play musik (ini sudah interaksi user)
+    music.play().then(() => {
+        isPlaying = true;
+        musicBtn.textContent = '🎶';
+        musicBtn.classList.add('playing');
+        console.log('Musik mulai diputar');
+    }).catch(err => {
+        console.warn('Gagal memutar musik:', err);
+
+        // Fallback: minta user klik sekali lagi di mana saja
+        alert('Klik sekali di layar untuk memulai musik 🎵');
+        document.addEventListener('click', () => {
             music.play().then(() => {
                 isPlaying = true;
                 musicBtn.textContent = '🎶';
                 musicBtn.classList.add('playing');
-            }).catch(e => {
-                console.log('Autoplay dicegah browser:', e);
-                // Coba play lagi setelah interaksi user
-                document.addEventListener('click', function playOnClick() {
-                    if (!isPlaying) {
-                        music.play().then(() => {
-                            isPlaying = true;
-                            musicBtn.textContent = '🎶';
-                            musicBtn.classList.add('playing');
-                        });
-                        document.removeEventListener('click', playOnClick);
-                    }
-                }, { once: true });
+                console.log('Musik diputar setelah klik kedua');
             });
-        }
+        }, { once: true });
+    });
+}
 
         function toggleMusic() {
             if (isPlaying) {
