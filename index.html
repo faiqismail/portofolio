@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Saya</title>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Selamat Ulang Tahun Sayangku ❤️</title>
+    <style>
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(118, 75, 162, 0.9);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        .music-control.playing {
+            animation: musicPulse 1s infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% {
+                box-shadow: 0 5px 15px rgba(118, 75, 162, 0.5);
+            }
+            50% {
+                box-shadow: 0 5px 25px rgba(118, 75, 162, 0.8);
+            }
+        }
+    </style>
     <style>
         * {
             margin: 0;
@@ -15,392 +46,303 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #0f172a;
-            --secondary-color: #1e293b;
-            --accent-color: #3b82f6;
-            --accent-hover: #2563eb;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --border-color: #334155;
-            --card-bg: rgba(30, 41, 59, 0.8);
-            --glass-bg: rgba(15, 23, 42, 0.8);
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--primary-color);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow-x: hidden;
         }
-        .navbar {
+
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #764ba2;
             margin-bottom: 20px;
+            animation: pulse 2s infinite;
         }
 
-        .profile-image {
-            max-width: 200px;
-            border: 5px solid #fff;
-            border-radius: 50%;
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
 
-        .card {
-            margin-bottom: 20px;
+        .heart {
+            font-size: 4em;
+            color: #ff6b9d;
+            margin: 20px 0;
+            animation: heartbeat 1.5s infinite;
         }
-     
 
-        #game-board {
-    width: 300px;
-    height: 300px;
-    border: 1px solid #ccc;
-    position: relative;
-    background-color: black;
-}
-#start-button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
 
-        .snake {
-            width: 20px;
-            height: 20px;
-            background-color: green;
+        .message {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #333;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 4px solid #ff6b9d;
+            text-align: left;
+        }
+
+        .highlight {
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .cake {
+            font-size: 5em;
+            margin: 30px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .balloons {
             position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            font-size: 3em;
+            display: flex;
+            justify-content: space-around;
         }
 
-        .food {
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            position: absolute;
+        .balloon {
+            animation: float 3s infinite ease-in-out;
         }
 
-        #restart-button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
+        .balloon:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-size: 1.2em;
+            color: #764ba2;
+            font-style: italic;
+        }
+
+        .gift-box {
+            margin: 40px auto;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
-        #snake-game-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Buat tinggi 100% dari viewport height */
-}
-
-
-        #game-board,
-        #start-button {
-            display: inline-block;
-            vertical-align: top;
+        .gift-box:hover {
+            transform: scale(1.1) rotate(5deg);
         }
 
-        #start-button {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-.snake-game-container {
-    text-align: center;
-}
+        .gift-emoji {
+            font-size: 8em;
+            animation: wiggle 2s infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        .gift-box:active .gift-emoji {
+            animation: none;
+            transform: scale(0.9);
+        }
+
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkleAnim 1s forwards;
+        }
+
+        @keyframes sparkleAnim {
+            to {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand">Portofolio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#education">Education</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#portfolio">Portofolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container mt-5" id="home">
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <img src="foto/img 2.jpg" alt="Foto Profil" class="img-fluid profile-image">
-            </div>
-            <div class="col-md-8">
-                <h2>Akhmad Fa'iq Ismail</h2><br>
-                <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Halo! Selamat datang di dunia portofolio saya. Saya adalah lulusan D3 Teknik Informatika dari Politeknik Elektronika Negeri Surabaya (PENS) yang antusias dalam bidang pemrograman, web development, dan dasar-dasar elektronika. Memiliki pengalaman mengikuti pelatihan bersertifikat serta menyelesaikan berbagai proyek digital dan praktik kerja lapangan di bidang elektronika dan IT. </p>
-            </div>
-        </div>
-    </div><br><br><br>
-
-    <div class="container mt-5" id="education">
-        <h2 style="text-align:center;">Education</h2><br>
-        <div class="row">
-            
-            <div class="col-md-4 text-center" >
-                <img src="foto/logo smk.png" alt="Foto Sekolah"  width="150" class="img-fluid ">
-            </div>
-            <div class="col-md-8">
-                <h3>SMK Muhammadiyah 1 Gresik </h3>
-                <p><b>Lulusan Tahun:</b> 2022<br><b>Jurusan:</b> Teknik Audio Video</p>
-                <p></p>
-            </div>
-        </div><br><br>
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <img src="foto/logo pens - Copy.png" alt="Foto Sekolah"  width="150" class="img-fluid ">
-            </div>
-            <div class="col-md-8">
-                <h3>Politeknik Elektronika Negeri Surabaya</h3>
-                <p><b>Lulusan Tahun:</b> 2025 <b><br>Departemen:</b> Teknik Informatika Dan Komputer<br><b>Prodi:</b> D3 Teknik Informatika </p>
-            
-            </div>
-        </div>
-    </div><br><br><br>
-
-    <div class="container mt-5" id="portfolio">
-        <h1 style="text-align:center;">SERTIFIKAT</h1><br>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/Screenshot 2023-06-01 111835.png" class="card-img-top" alt="Proyek 1">
-                
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/Screenshot 2023-07-08 160102.png" class="card-img-top" alt="Proyek 2">
-                  
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/sertif.jpg" class="card-img-top" alt="Proyek 3">
-                  
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/p1.jpg" class="card-img-top" alt="Proyek 4">
-                  
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/Screenshot 2023-08-28 191754.png" class="card-img-top" alt="Proyek 5">
-                   
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/Screenshot 2023-08-28 191735.png" class="card-img-top" alt="Proyek 6">
-                   
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container mt-5" id="portfolio">
-        <h1 style="text-align:center;">Pengalaman Proyek</h1><br>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/ppp.png" class="card-img-top" alt="Proyek 1">
-                   
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/PENGADUAN.png" class="card-img-top" alt="Proyek 2">
-                   
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/BROSUR.png" class="card-img-top" alt="Proyek 3">
-                   
-                </div>
-            </div>
-           
-           
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    <audio id="bgMusic" loop>
+        <source src="https://youtu.be/4Xyu95TEJZ0?si=x86Tbewl-nKVJHJs" type="audio/mpeg">
+    </audio>
     
-    <div class="container mt-5" id="snake-game">
-        <h2 style="text-align:center;">Snake Game</h2><br>
-        <div class="snake-game-container">
-            <div id="game-board"></div><br><br>
-            <button id="start-button">Mulai</button>
+    <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+    <div class="container">
+        <div class="balloons">
+            <span class="balloon">🎈</span>
+            <span class="balloon">🎈</span>
+            <span class="balloon">🎈</span>
+        </div>
+
+        <h1>Ada Sesuatu Spesial Untukmu! 🎁</h1>
+        
+        <div class="heart">❤️</div>
+        
+        <div id="quiz-section">
+            <div class="cake">🎂</div>
+            <p style="font-size: 1.3em; margin: 20px 0; color: #764ba2;">Tebak dulu ya... Siapa yang paling beruntung hari ini?</p>
+            
+            <div class="gift-box" id="gift">
+                <div class="gift-emoji">🎁</div>
+                <p style="margin-top: 15px; font-size: 1.1em;">Klik kadonya!</p>
+            </div>
+        </div>
+
+        <div id="surprise-section" style="display: none;">
+            <h1 style="animation: none;">Selamat Ulang Tahun<br>Misyka Az Zujaja Asy Syaukati! 🎉</h1>
+            
+            <div class="cake">🎂</div>
+
+            <div class="message">
+                <p>Untuk kamu yang selalu ada...</p>
+                <br>
+                <p>Terima kasih sudah <span class="highlight">menemaniku selama ini</span>. Terima kasih sudah mau <span class="highlight">susah bareng aku</span>, tertawa bareng aku, dan melewati setiap hari dengan penuh makna.</p>
+                <br>
+                <p>Kamu adalah <span class="highlight">alasan aku tersenyum</span> setiap hari. Kehadiranmu membuat segalanya lebih indah dan bermakna.</p>
+                <br>
+                <p>Di hari spesialmu ini, aku berdoa semoga kamu selalu <span class="highlight">bahagia, sehat, dan sukses</span> dalam segala hal. Semoga semua impianmu tercapai dan hari-harimu selalu dipenuhi kebahagiaan.</p>
+                <br>
+                <p>Aku <span class="highlight">sayang kamu</span>, hari ini, besok, dan selamanya. ❤️</p>
+            </div>
+
+            <div class="signature">
+                Dengan cinta, <br>
+                Yang selalu ada untukmu 💕
+            </div>
         </div>
     </div>
-<br>
-    <div class="container mt-5" id="contact">
-        <h2 style="text-align:center;">Contact</h2><br>
-        <p style="text-align:center;">
-            <img src="https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/112-gmail_email_mail-512.png" alt="Logo Email" width="30" height="30">
-            Untuk menghubungi saya, Anda dapat mengirim email ke: 
-            <a href="mailto:faiq69bikejr@gmail.com">faiq69bikejr@gmail.com</a>
-        </p>
-        <p style="text-align:center;">
-            <img src="https://www.tanjunglesung.com/wp-content/uploads/2018/12/logo-wa-whatsapp.png" alt="Logo WhatsApp" width="30" height="30">
-            Atau menghubungi melalui WhatsApp di: 
-            <a href="https://wa.me/085155476677">085155476677</a>
-        </p>
-    </div>
 
-    <br><br><br><br>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const board = document.getElementById('game-board');
-            const startButton = document.getElementById('start-button');
-            const snakeSize = 20;
-            const initialSnake = [{ x: 0, y: 0 }];
-            let snake = [...initialSnake];
-            let food = { x: 100, y: 100 };
-            let direction = 'right';
-            let gameInterval;
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        let isPlaying = false;
 
-            function drawSnake() {
-                board.innerHTML = '';
-                snake.forEach(segment => {
-                    const snakeElement = document.createElement('div');
-                    snakeElement.classList.add('snake');
-                    snakeElement.style.left = `${segment.x}px`;
-                    snakeElement.style.top = `${segment.y}px`;
-                    board.appendChild(snakeElement);
-                });
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.textContent = '🎵';
+                musicBtn.classList.remove('playing');
+            } else {
+                music.play();
+                musicBtn.textContent = '🎶';
+                musicBtn.classList.add('playing');
             }
+            isPlaying = !isPlaying;
+        }
 
-            function drawFood() {
-                const foodElement = document.createElement('div');
-                foodElement.classList.add('food');
-                foodElement.style.left = `${food.x}px`;
-                foodElement.style.top = `${food.y}px`;
-                board.appendChild(foodElement);
-            }
-
-            function moveSnake() {
-                const head = { ...snake[0] };
-
-                switch (direction) {
-                    case 'up':
-                        head.y -= snakeSize;
-                        break;
-                    case 'down':
-                        head.y += snakeSize;
-                        break;
-                    case 'left':
-                        head.x -= snakeSize;
-                        break;
-                    case 'right':
-                        head.x += snakeSize;
-                        break;
+        // Auto play musik saat kado dibuka
+        document.getElementById('gift').addEventListener('click', function() {
+            this.style.animation = 'bounce 0.5s';
+            
+            setTimeout(() => {
+                document.getElementById('quiz-section').style.display = 'none';
+                document.getElementById('surprise-section').style.display = 'block';
+                createConfetti();
+                
+                // Play musik otomatis
+                if (!isPlaying) {
+                    toggleMusic();
                 }
-
-                snake.unshift(head);
-                if (head.x === food.x && head.y === food.y) {
-                    generateFood();
-                } else {
-                    snake.pop();
-                }
-            }
-
-            function generateFood() {
-                const maxX = board.clientWidth - snakeSize;
-                const maxY = board.clientHeight - snakeSize;
-
-                const x = Math.floor(Math.random() * maxX / snakeSize) * snakeSize;
-                const y = Math.floor(Math.random() * maxY / snakeSize) * snakeSize;
-
-                food = { x, y };
-            }
-    
-            function checkCollision() {
-                const head = snake[0];
-                return (
-                    head.x < 0 || head.x >= board.clientWidth ||
-                    head.y < 0 || head.y >= board.clientHeight ||
-                    snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)
-                );
-            }
-    
-            function updateGame() {
-                moveSnake();
-                if (checkCollision()) {
-                    clearInterval(gameInterval);
-                    alert('Game Over!');
-                    snake = [...initialSnake];
-                    direction = 'right';
-                    drawSnake();
-                    drawFood();
-                    startButton.style.display = 'block';
-                } else {
-                    drawSnake();
-                    drawFood();
-                }
-            }
-    
-            function handleKeyPress(event) {
-                switch (event.key) {
-                    case 'ArrowUp':
-                        direction = 'up';
-                        break;
-                    case 'ArrowDown':
-                        direction = 'down';
-                        break;
-                    case 'ArrowLeft':
-                        direction = 'left';
-                        break;
-                    case 'ArrowRight':
-                        direction = 'right';
-                        break;
-                }
-            }
-    
-            function startGame() {
-                startButton.style.display = 'none';
-                snake = [...initialSnake];
-                direction = 'right';
-                generateFood();
-                gameInterval = setInterval(updateGame, 300);
-            }
-    
-            startButton.addEventListener('click', startGame);
-    
-            generateFood();
-            drawFood();
-            drawSnake();
-            // gameInterval = setInterval(updateGame, 200); // Removed this line
-    
-            document.addEventListener('keydown', handleKeyPress);
+            }, 500);
         });
+
+        // Efek sparkle saat klik
+        document.addEventListener('click', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.textContent = '✨';
+            sparkle.style.left = e.pageX + 'px';
+            sparkle.style.top = e.pageY + 'px';
+            sparkle.style.position = 'absolute';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        });
+
+        // Konfeti saat halaman dibuka
+        function createConfetti() {
+            const confetti = ['🎉', '🎊', '✨', '💝', '💖', '🌟'];
+            for(let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.textContent = confetti[Math.floor(Math.random() * confetti.length)];
+                    el.style.position = 'fixed';
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.top = '-50px';
+                    el.style.fontSize = '2em';
+                    el.style.animation = 'sparkleAnim 3s forwards';
+                    document.body.appendChild(el);
+                    
+                    setTimeout(() => el.remove(), 3000);
+                }, i * 100);
+            }
+        }
     </script>
 </body>
 </html>
