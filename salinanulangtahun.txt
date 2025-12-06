@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Profesional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1929 0%, #1a2332 50%, #0d1b2a 100%);
+            color: #e0e7ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(96, 165, 250, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Grid Background */
+        .grid-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-image: 
+                linear-gradient(rgba(96, 165, 250, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(96, 165, 250, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(50px);
+            }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+            bottom: -100px;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        /* Code Rain Effect */
+        .code-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .code-char {
+            position: absolute;
+            color: rgba(96, 165, 250, 0.15);
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-img-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(96, 165, 250, 0.8);
+            }
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            border: 4px solid #60a5fa;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        /* Section Styling */
+        .section {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px;
+            height: 40px;
+            background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%);
+            border-radius: 10px;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(96, 165, 250, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            color: #93c5fd;
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            color: #64748b;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        /* Certificate specific */
+        .cert-img {
+            height: 200px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+        }
+
+        /* Project specific */
+        .project-img {
+            height: 220px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(96, 165, 250, 0.2);
+            color: #93c5fd;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Add Button */
+        .add-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Game Section */
+        .game-section {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            text-align: center;
+        }
+
+        #gameCanvas {
+            background: rgba(10, 25, 41, 0.8);
+            border: 2px solid rgba(96, 165, 250, 0.3);
+            border-radius: 15px;
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(96, 165, 250, 0.2);
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .game-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .game-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .game-btn:active {
+            transform: translateY(0);
+        }
+
+        .score-display {
+            font-size: 1.5em;
+            color: #60a5fa;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .game-info {
+            color: #94a3b8;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="grid-bg"></div>
+    <div class="code-rain" id="codeRain"></div>
+    <div class="bg-animation" id="particles">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="profile-img-container">
+                <img  class="profile-img" id="profileImg" src="foto/profil.jpeg" alt="">
+            </div>
+            <h1 id="userName">Nama Anda</h1>
+            <p class="subtitle" id="userRole">Full Stack Developer</p>
+            <p class="description" id="userDesc">
+                Saya adalah seorang developer yang berpengalaman dalam membangun aplikasi web modern dengan teknologi terkini. Passionate dalam menciptakan solusi digital yang inovatif dan user-friendly.
+            </p>
+        </header>
+
+        <!-- Sertifikat Pelatihan -->
+        <section class="section">
+            <h2 class="section-title">Sertifikat Pelatihan</h2>
+            <div class="grid" id="trainingsGrid">
+                <div class="card">
+                    <div class="card-img cert-img">🎓 Sertifikat</div>
+                    <h3 class="card-title">Web Development Bootcamp</h3>
+                    <p class="card-subtitle">Udemy • 2024</p>
+                    <p class="card-description">Pelatihan intensif tentang HTML, CSS, JavaScript, dan framework modern seperti React dan Node.js.</p>
+                </div>
+                <div class="card">
+                    <div class="card-img cert-img">🎓 Sertifikat</div>
+                    <h3 class="card-title">Python for Data Science</h3>
+                    <p class="card-subtitle">Coursera • 2023</p>
+                    <p class="card-description">Mempelajari analisis data, visualisasi, dan machine learning menggunakan Python, Pandas, dan Scikit-learn.</p>
+                </div>
+            </div>
+            <button class="add-btn" onclick="addTraining()">+ Tambah Pelatihan</button>
+        </section>
+
+        <!-- Sertifikasi -->
+        <section class="section">
+            <h2 class="section-title">Sertifikasi Profesional</h2>
+            <div class="grid" id="certificationsGrid">
+                <div class="card">
+                    <div class="card-img cert-img">🏆 Sertifikasi</div>
+                    <h3 class="card-title">AWS Certified Developer</h3>
+                    <p class="card-subtitle">Amazon Web Services • Valid hingga 2026</p>
+                    <p class="card-description">Sertifikasi profesional untuk mengembangkan dan memelihara aplikasi di platform AWS.</p>
+                </div>
+                <div class="card">
+                    <div class="card-img cert-img">🏆 Sertifikasi</div>
+                    <h3 class="card-title">Google Cloud Professional</h3>
+                    <p class="card-subtitle">Google Cloud • Valid hingga 2025</p>
+                    <p class="card-description">Sertifikasi untuk merancang, mengembangkan, dan mengelola solusi cloud yang scalable.</p>
+                </div>
+            </div>
+            <button class="add-btn" onclick="addCertification()">+ Tambah Sertifikasi</button>
+        </section>
+
+        <!-- Pengalaman Proyek -->
+        <section class="section">
+            <h2 class="section-title">Pengalaman Proyek</h2>
+            <div class="grid" id="projectsGrid">
+                <div class="card">
+                    <div class="card-img project-img">💼 Proyek</div>
+                    <h3 class="card-title">E-Commerce Platform</h3>
+                    <p class="card-subtitle">PT Digital Solution • 2024</p>
+                    <p class="card-description">Mengembangkan platform e-commerce full-stack dengan fitur payment gateway, inventory management, dan dashboard admin.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img project-img">💼 Proyek</div>
+                    <h3 class="card-title">Mobile Banking App</h3>
+                    <p class="card-subtitle">Bank Digital Indonesia • 2023</p>
+                    <p class="card-description">Membangun aplikasi mobile banking dengan fitur transfer, pembayaran tagihan, dan investasi.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img project-img">💼 Proyek</div>
+                    <h3 class="card-title">Data Analytics Dashboard</h3>
+                    <p class="card-subtitle">Startup Analytics • 2023</p>
+                    <p class="card-description">Membuat dashboard interaktif untuk visualisasi data real-time dengan chart dan metrics yang dinamis.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+            <button class="add-btn" onclick="addProject()">+ Tambah Proyek</button>
+        </section>
+
+        <!-- Game Section -->
+        <section class="section game-section">
+            <h2 class="section-title">🎮 Mini Game - Dodge The Obstacles</h2>
+            <p class="game-info">Kontrol: Klik/Tap atau tekan SPASI untuk melompat | Hindari rintangan merah!</p>
+            <div class="score-display">Score: <span id="scoreDisplay">0</span> | High Score: <span id="highScoreDisplay">0</span></div>
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+            <div class="game-controls">
+                <button class="game-btn" id="startBtn" onclick="startGame()">Start Game</button>
+                <button class="game-btn" onclick="resetGame()">Reset</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Create animated particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Code Rain Effect
+        const codeRainContainer = document.getElementById('codeRain');
+        const codeChars = '01{}</>[]();=+-*&|abcdefghijklmnopqrstuvwxyz';
+        for (let i = 0; i < 30; i++) {
+            const char = document.createElement('div');
+            char.className = 'code-char';
+            char.textContent = codeChars[Math.floor(Math.random() * codeChars.length)];
+            char.style.left = Math.random() * 100 + '%';
+            char.style.animationDelay = Math.random() * 5 + 's';
+            char.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            codeRainContainer.appendChild(char);
+        }
+
+        // Dynamic content functions
+        function addTraining() {
+            const name = prompt('Nama Pelatihan:');
+            const provider = prompt('Penyelenggara:');
+            const year = prompt('Tahun:');
+            const desc = prompt('Deskripsi:');
+            
+            if (name && provider && year && desc) {
+                const grid = document.getElementById('trainingsGrid');
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-img cert-img">🎓 Sertifikat</div>
+                    <h3 class="card-title">${name}</h3>
+                    <p class="card-subtitle">${provider} • ${year}</p>
+                    <p class="card-description">${desc}</p>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        function addCertification() {
+            const name = prompt('Nama Sertifikasi:');
+            const provider = prompt('Penerbit:');
+            const validity = prompt('Masa Berlaku:');
+            const desc = prompt('Deskripsi:');
+            
+            if (name && provider && validity && desc) {
+                const grid = document.getElementById('certificationsGrid');
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-img cert-img">🏆 Sertifikasi</div>
+                    <h3 class="card-title">${name}</h3>
+                    <p class="card-subtitle">${provider} • ${validity}</p>
+                    <p class="card-description">${desc}</p>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        function addProject() {
+            const name = prompt('Nama Proyek:');
+            const client = prompt('Klien/Perusahaan:');
+            const year = prompt('Tahun:');
+            const desc = prompt('Deskripsi:');
+            const tech = prompt('Teknologi (pisahkan dengan koma):');
+            
+            if (name && client && year && desc && tech) {
+                const grid = document.getElementById('projectsGrid');
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                const techTags = tech.split(',').map(t => 
+                    `<span class="tech-tag">${t.trim()}</span>`
+                ).join('');
+                
+                card.innerHTML = `
+                    <div class="card-img project-img">💼 Proyek</div>
+                    <h3 class="card-title">${name}</h3>
+                    <p class="card-subtitle">${client} • ${year}</p>
+                    <p class="card-description">${desc}</p>
+                    <div class="tech-stack">${techTags}</div>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        // Edit profile
+        document.getElementById('userName').addEventListener('click', function() {
+            const newName = prompt('Masukkan nama Anda:', this.textContent);
+            if (newName) this.textContent = newName;
+        });
+
+        document.getElementById('userRole').addEventListener('click', function() {
+            const newRole = prompt('Masukkan posisi/role Anda:', this.textContent);
+            if (newRole) this.textContent = newRole;
+        });
+
+        document.getElementById('userDesc').addEventListener('click', function() {
+            const newDesc = prompt('Masukkan deskripsi Anda:', this.textContent);
+            if (newDesc) this.textContent = newDesc;
+        });
+
+        // Game Logic
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let gameRunning = false;
+        let score = 0;
+        let highScore = 0;
+        let animationId;
+
+        // Responsive canvas
+        function resizeCanvas() {
+            const maxWidth = Math.min(800, window.innerWidth - 40);
+            canvas.width = maxWidth;
+            canvas.height = maxWidth * 0.5;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Player
+        const player = {
+            x: 50,
+            y: canvas.height - 60,
+            width: 30,
+            height: 30,
+            velocityY: 0,
+            jumping: false,
+            color: '#60a5fa'
+        };
+
+        // Obstacles
+        let obstacles = [];
+        let obstacleSpeed = 5;
+        let obstacleInterval = 90;
+        let frameCount = 0;
+
+        // Ground
+        const groundY = canvas.height - 30;
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            ctx.shadowBlur = 0;
+        }
+
+        function drawObstacle(obs) {
+            ctx.fillStyle = '#ef4444';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#ef4444';
+            ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            ctx.shadowBlur = 0;
+        }
+
+        function drawGround() {
+            ctx.fillStyle = 'rgba(96, 165, 250, 0.2)';
+            ctx.fillRect(0, groundY, canvas.width, 30);
+        }
+
+        function drawScore() {
+            ctx.fillStyle = '#93c5fd';
+            ctx.font = 'bold 24px Arial';
+            ctx.fillText('Score: ' + score, 20, 40);
+        }
+
+        function jump() {
+            if (!player.jumping && player.y >= groundY - player.height) {
+                player.velocityY = -15;
+                player.jumping = true;
+            }
+        }
+
+        function updatePlayer() {
+            player.velocityY += 0.8; // Gravity
+            player.y += player.velocityY;
+
+            if (player.y >= groundY - player.height) {
+                player.y = groundY - player.height;
+                player.velocityY = 0;
+                player.jumping = false;
+            }
+        }
+
+        function createObstacle() {
+            const height = Math.random() * 40 + 30;
+            obstacles.push({
+                x: canvas.width,
+                y: groundY - height,
+                width: 25,
+                height: height
+            });
+        }
+
+        function updateObstacles() {
+            frameCount++;
+            
+            if (frameCount % obstacleInterval === 0) {
+                createObstacle();
+            }
+
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                obstacles[i].x -= obstacleSpeed;
+
+                if (obstacles[i].x + obstacles[i].width < 0) {
+                    obstacles.splice(i, 1);
+                    score++;
+                    document.getElementById('scoreDisplay').textContent = score;
+                    
+                    // Increase difficulty
+                    if (score % 10 === 0) {
+                        obstacleSpeed += 0.5;
+                        obstacleInterval = Math.max(60, obstacleInterval - 5);
+                    }
+                }
+            }
+        }
+
+        function checkCollision() {
+            for (let obs of obstacles) {
+                if (player.x < obs.x + obs.width &&
+                    player.x + player.width > obs.x &&
+                    player.y < obs.y + obs.height &&
+                    player.y + player.height > obs.y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            drawGround();
+            drawPlayer();
+            drawScore();
+            
+            obstacles.forEach(drawObstacle);
+            
+            updatePlayer();
+            updateObstacles();
+
+            if (checkCollision()) {
+                gameOver();
+                return;
+            }
+
+            animationId = requestAnimationFrame(gameLoop);
+        }
+
+        function startGame() {
+            if (gameRunning) return;
+            
+            gameRunning = true;
+            score = 0;
+            obstacles = [];
+            obstacleSpeed = 5;
+            obstacleInterval = 90;
+            frameCount = 0;
+            player.y = groundY - player.height;
+            player.velocityY = 0;
+            player.jumping = false;
+            
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('startBtn').textContent = 'Playing...';
+            
+            gameLoop();
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            cancelAnimationFrame(animationId);
+            
+            if (score > highScore) {
+                highScore = score;
+                document.getElementById('highScoreDisplay').textContent = highScore;
+            }
+            
+            document.getElementById('startBtn').textContent = 'Play Again';
+            
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.8)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ef4444';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 20);
+            ctx.fillStyle = '#60a5fa';
+            ctx.font = 'bold 24px Arial';
+            ctx.fillText('Score: ' + score, canvas.width / 2, canvas.height / 2 + 30);
+            ctx.textAlign = 'left';
+        }
+
+        function resetGame() {
+            gameRunning = false;
+            cancelAnimationFrame(animationId);
+            score = 0;
+            obstacles = [];
+            obstacleSpeed = 5;
+            obstacleInterval = 90;
+            frameCount = 0;
+            player.y = groundY - player.height;
+            player.velocityY = 0;
+            player.jumping = false;
+            
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('startBtn').textContent = 'Start Game';
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawGround();
+            drawPlayer();
+        }
+
+        // Controls
+        document.addEventListener('keydown', (e) => {
+            if ((e.code === 'Space' || e.code === 'ArrowUp') && gameRunning) {
+                e.preventDefault();
+                jump();
+            }
+        });
+
+        canvas.addEventListener('click', () => {
+            if (gameRunning) jump();
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (gameRunning) jump();
+        });
+
+        // Initial draw
+        resetGame();
+    </script>
+</body>
+</html>
