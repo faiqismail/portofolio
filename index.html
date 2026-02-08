@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Saya</title>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Akhmad Fa'iq Ismail - Digital Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -16,293 +17,2153 @@
         }
 
         :root {
-            --primary-color: #0f172a;
-            --secondary-color: #1e293b;
-            --accent-color: #3b82f6;
-            --accent-hover: #2563eb;
-            --text-primary: #f8fafc;
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151a35;
+            --bg-card: rgba(21, 26, 53, 0.8);
+            --accent-blue: #00d4ff;
+            --accent-purple: #7c3aed;
+            --accent-pink: #ec4899;
+            --accent-gold: #f59e0b;
+            --text-primary: #ffffff;
             --text-secondary: #94a3b8;
             --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --border-color: #334155;
-            --card-bg: rgba(30, 41, 59, 0.8);
-            --glass-bg: rgba(15, 23, 42, 0.8);
+            --gradient-2: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+            --gradient-3: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%);
+            --gradient-4: linear-gradient(135deg, #00d4ff 0%, #ec4899 50%, #f59e0b 100%);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--primary-color);
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
             overflow-x: hidden;
-        }
-        .navbar {
-            margin-bottom: 20px;
+            line-height: 1.6;
+            cursor: none;
         }
 
-        .profile-image {
-            max-width: 200px;
-            border: 5px solid #fff;
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-blue);
             border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
         }
 
-        .card {
-            margin-bottom: 20px;
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10001;
+            transition: all 0.05s ease;
         }
-     
+
+        /* Cursor Trail Effect */
+        .cursor-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-blue);
+        }
+
+        /* Hover Code Effect */
+        .hover-code {
+            position: fixed;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-blue);
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            animation: fadeCode 1.5s ease-out forwards;
+            text-shadow: 0 0 10px var(--accent-blue);
+        }
+
+        @keyframes fadeCode {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.8);
+            }
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 212, 255, 0.1);
+            border-top: 5px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-blue);
+            font-size: 14px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            opacity: 0.1;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-100px) translateX(50px) rotate(90deg);
+            }
+
+            50% {
+                transform: translateY(-50px) translateX(100px) rotate(180deg);
+            }
+
+            75% {
+                transform: translateY(-150px) translateX(-50px) rotate(270deg);
+            }
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(50px);
+            }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: none;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .lang-btn {
+            padding: 0.3rem 0.8rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: none;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .lang-btn.active {
+            background: var(--gradient-2);
+            color: var(--text-primary);
+        }
+
+        .lang-btn:hover {
+            color: var(--accent-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: none;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gradient-text {
+            background: var(--gradient-4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-2);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Profile Image */
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            height: 550px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .profile-frame::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            background: var(--gradient-2);
+            border-radius: 20px;
+            z-index: 1;
+            opacity: 0.5;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Floating Tech Icons */
+        .floating-tech {
+            position: absolute;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: floatAnim 3s ease-in-out infinite;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .floating-tech:hover {
+            transform: scale(1.1) translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .floating-tech-1 {
+            top: 5%;
+            left: -15%;
+            animation-delay: 0s;
+        }
+
+        .floating-tech-2 {
+            top: 30%;
+            right: -15%;
+            animation-delay: 1s;
+        }
+
+        .floating-tech-3 {
+            bottom: 30%;
+            left: -10%;
+            animation-delay: 2s;
+        }
+
+        .floating-tech-4 {
+            top: 60%;
+            right: -12%;
+            animation-delay: 0.5s;
+        }
+
+        .floating-tech-5 {
+            bottom: 5%;
+            left: -8%;
+            animation-delay: 1.5s;
+        }
+
+        .floating-tech-6 {
+            bottom: 15%;
+            right: -10%;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes floatAnim {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 2px;
+        }
+
+        /* Education Cards */
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .edu-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+        }
+
+        .edu-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-blue);
+        }
+
+        .edu-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+        }
+
+        .edu-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Certificate Gallery */
+        .cert-grid,
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card,
+        .project-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            background: var(--bg-card);
+        }
+
+        .cert-card:hover,
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 15px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .cert-image-container,
+        .project-image-container {
+            width: 100%;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .cert-card img,
+        .project-image {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .cert-card.landscape img,
+        .project-card.landscape .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .cert-card.portrait img,
+        .project-card.portrait .project-image {
+            width: auto;
+            height: 350px;
+            object-fit: contain;
+        }
+
+        .cert-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .cert-card:hover .cert-overlay,
+        .project-card:hover .cert-overlay {
+            opacity: 1;
+        }
+
+        .cert-card:hover img,
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .zoom-icon {
+            font-size: 3rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 1.5rem;
+            background: var(--bg-card);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(124, 58, 237, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Image Zoom Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: zoomIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--text-primary);
+            font-size: 2rem;
+            cursor: none;
+            background: var(--gradient-2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gradient-2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: none;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+
+        .modal-nav:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: -60px;
+        }
+
+        .modal-next {
+            right: -60px;
+        }
+
+        /* Skills Visual */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .skill-category:hover::before {
+            opacity: 1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .skill-category:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            padding: 0.4rem 0.8rem;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Games Container */
+        .games-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--accent-blue);
+            font-family: 'Playfair Display', serif;
+        }
 
         #game-board {
-    width: 300px;
-    height: 300px;
-    border: 1px solid #ccc;
-    position: relative;
-    background-color: black;
-}
-#start-button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            border: 2px solid var(--accent-blue);
+            border-radius: 10px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+            margin: 0 auto 1rem;
+        }
 
-        .snake {
-            width: 20px;
-            height: 20px;
-            background-color: green;
+        .guess-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .guess-input-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .guess-input {
+            flex: 1;
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .guess-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .guess-feedback {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .guess-feedback.correct {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .guess-feedback.wrong {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .guess-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-box {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .game-btn {
+            padding: 0.8rem 2rem;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-weight: 600;
+            cursor: none;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .game-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
             position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            transition: all 0.5s ease;
         }
 
-        .food {
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            position: absolute;
+        .contact-card:hover::before {
+            left: 100%;
         }
 
-        #restart-button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
         }
 
-        #snake-game-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Buat tinggi 100% dari viewport height */
-}
-
-
-        #game-board,
-        #start-button {
-            display: inline-block;
-            vertical-align: top;
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        #start-button {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-.snake-game-container {
-    text-align: center;
-}
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-2);
+            color: var(--text-primary);
+            transform: translateY(-3px) rotate(360deg);
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-4);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .profile-frame {
+                max-width: 350px;
+                height: 450px;
+            }
+
+            .floating-tech {
+                display: none;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .edu-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .edu-logo {
+                margin: 0 auto;
+            }
+
+            .games-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .custom-cursor,
+            .cursor-dot,
+            .cursor-trail {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(10, 14, 39, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+                cursor: pointer;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .cert-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+
+            .profile-frame {
+                max-width: 300px;
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-frame {
+                max-width: 250px;
+                height: 350px;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand">Portofolio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-text">Loading Portfolio...</div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="particle" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
+        <div class="particle" style="width: 200px; height: 200px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+        <div class="particle" style="width: 250px; height: 250px; bottom: 10%; left: 50%; animation-delay: 4s;"></div>
+    </div>
+    <div class="grid-bg"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">&lt;AFI/&gt;</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-en="Home" data-id="Beranda" data-zh="首页">Home</a></li>
+                <li><a href="#education" data-en="Education" data-id="Pendidikan" data-zh="教育">Education</a></li>
+                <li><a href="#skills" data-en="Skills" data-id="Keahlian" data-zh="技能">Skills</a></li>
+                <li><a href="#certificates" data-en="Certificates" data-id="Sertifikat" data-zh="证书">Certificates</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#education">Education</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#portfolio">Portofolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
+                <li><a href="#projects" data-en="Projects" data-id="Proyek" data-zh="项目">Projects</a></li>
+                <li><a href="#game" data-en="Games" data-id="Permainan" data-zh="游戏">Games</a></li>
+                <li><a href="#contact" data-en="Contact" data-id="Kontak" data-zh="联系">Contact</a></li>
+                <li>
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="id">ID</button>
+                        <button class="lang-btn" data-lang="zh">中文</button>
+                    </div>
                 </li>
             </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <div class="container mt-5" id="home">
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <img src="foto/img 2.jpg" alt="Foto Profil" class="img-fluid profile-image">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span data-en="Hi, I'm" data-id="Halo, Saya" data-zh="你好，我是">Hi, I'm</span>
+                    <span class="gradient-text">Akhmad Fa'iq Ismail</span>
+                </h1>
+                <p data-en="Welcome to my digital portfolio! I'm a graduate of D3 Informatics Engineering from Electronic Engineering Polytechnic Institute of Surabaya (PENS), passionate about programming, web development, and electronics fundamentals. I have experience participating in certified training programs and completing various digital projects and field work practices in electronics and IT."
+                    data-id="Selamat datang di portofolio digital saya! Saya adalah lulusan D3 Teknik Informatika dari Politeknik Elektronika Negeri Surabaya (PENS) yang antusias dalam bidang pemrograman, pengembangan web, dan dasar-dasar elektronika. Saya memiliki pengalaman mengikuti program pelatihan bersertifikat serta menyelesaikan berbagai proyek digital dan praktik kerja lapangan di bidang elektronika dan IT."
+                    data-zh="欢迎来到我的数字作品集！我毕业于泗水国立电子工程理工学院（PENS）的D3信息工程专业，热衷于编程、网页开发和电子基础。我有参加认证培训项目的经验，并完成了各种电子和IT领域的数字项目和实地工作实践。">
+                    Welcome to my digital portfolio! I'm a graduate of D3 Informatics Engineering from Electronic
+                    Engineering Polytechnic Institute of Surabaya (PENS), passionate about programming, web development,
+                    and electronics fundamentals.
+                </p>
+
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> <span data-en="View Projects" data-id="Lihat Proyek"
+                            data-zh="查看项目">View Projects</span>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> <span data-en="Get In Touch" data-id="Hubungi Saya"
+                            data-zh="联系我">Get In Touch</span>
+                    </a>
+                </div>
             </div>
-            <div class="col-md-8">
-                <h2>Akhmad Fa'iq Ismail</h2><br>
-                <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Halo! Selamat datang di dunia portofolio saya. Saya adalah lulusan D3 Teknik Informatika dari Politeknik Elektronika Negeri Surabaya (PENS) yang antusias dalam bidang pemrograman, web development, dan dasar-dasar elektronika. Memiliki pengalaman mengikuti pelatihan bersertifikat serta menyelesaikan berbagai proyek digital dan praktik kerja lapangan di bidang elektronika dan IT. </p>
+
+            <div class="hero-image">
+                <div class="profile-frame">
+                    <img src="foto/profil.jpeg" alt="Profile" class="profile-img">
+                </div>
+                <div class="floating-tech floating-tech-1">
+                    <i class="fab fa-react" style="color: #61dafb; font-size: 1.5rem;"></i>
+                    <span>React</span>
+                </div>
+                <div class="floating-tech floating-tech-2">
+                    <i class="fab fa-node-js" style="color: #68a063; font-size: 1.5rem;"></i>
+                    <span>Node.js</span>
+                </div>
+                <div class="floating-tech floating-tech-3">
+                    <i class="fab fa-php" style="color: #777bb4; font-size: 1.5rem;"></i>
+                    <span>PHP</span>
+                </div>
+                <div class="floating-tech floating-tech-4">
+                    <i class="fas fa-database" style="color: #00758f; font-size: 1.5rem;"></i>
+                    <span>MySQL</span>
+                </div>
+                <div class="floating-tech floating-tech-5">
+                    <i class="fab fa-python" style="color: #3776ab; font-size: 1.5rem;"></i>
+                    <span>Python</span>
+                </div>
+                <div class="floating-tech floating-tech-6">
+                    <i class="fab fa-js" style="color: #f7df1e; font-size: 1.5rem;"></i>
+                    <span>JavaScript</span>
+                </div>
             </div>
         </div>
-    </div><br><br><br>
+    </section>
 
-    <div class="container mt-5" id="education">
-        <h2 style="text-align:center;">Education</h2><br>
-        <div class="row">
-            
-            <div class="col-md-4 text-center" >
-                <img src="foto/logo smk.png" alt="Foto Sekolah"  width="150" class="img-fluid ">
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title" data-en="Education Journey" data-id="Perjalanan Pendidikan" data-zh="教育历程">Education
+            Journey</h2>
+        <div class="education-grid">
+            <div class="edu-card">
+                <img src="foto/logo pens - Copy.png" alt="PENS Logo" class="edu-logo">
+                <div class="edu-info">
+                    <h3>Politeknik Elektronika Negeri Surabaya</h3>
+                    <div class="edu-meta">
+                        <span><i class="fas fa-graduation-cap"></i> <span data-en="D3 Informatics Engineering"
+                                data-id="D3 Teknik Informatika" data-zh="D3信息工程">D3 Informatics
+                                Engineering</span></span>
+                        <span><i class="fas fa-calendar"></i> 2022 - 2025</span>
+                    </div>
+                    <p data-en="Focused on modern software development, web technologies, and electronics integration. Completed multiple certified training programs in web development and IoT systems."
+                        data-id="Fokus pada pengembangan perangkat lunak modern, teknologi web, dan integrasi elektronika. Menyelesaikan berbagai program pelatihan bersertifikat dalam pengembangan web dan sistem IoT."
+                        data-zh="专注于现代软件开发、网络技术和电子集成。完成了网页开发和物联网系统的多个认证培训项目。">
+                        Focused on modern software development, web technologies, and electronics integration.
+                    </p>
+                </div>
             </div>
-            <div class="col-md-8">
-                <h3>SMK Muhammadiyah 1 Gresik </h3>
-                <p><b>Lulusan Tahun:</b> 2022<br><b>Jurusan:</b> Teknik Audio Video</p>
-                <p></p>
-            </div>
-        </div><br><br>
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <img src="foto/logo pens - Copy.png" alt="Foto Sekolah"  width="150" class="img-fluid ">
-            </div>
-            <div class="col-md-8">
-                <h3>Politeknik Elektronika Negeri Surabaya</h3>
-                <p><b>Lulusan Tahun:</b> 2025 <b><br>Departemen:</b> Teknik Informatika Dan Komputer<br><b>Prodi:</b> D3 Teknik Informatika </p>
-            
+
+            <div class="edu-card">
+                <img src="foto/logo smk.png" alt="SMK Logo" class="edu-logo">
+                <div class="edu-info">
+                    <h3>SMK Muhammadiyah 1 Gresik</h3>
+                    <div class="edu-meta">
+                        <span><i class="fas fa-graduation-cap"></i> <span data-en="Audio Video Engineering"
+                                data-id="Teknik Audio Video" data-zh="音视频工程">Audio Video Engineering</span></span>
+                        <span><i class="fas fa-calendar"></i> 2019 - 2022</span>
+                    </div>
+                    <p data-en="Specialized in audio-visual technology and electronics, building a strong foundation in hardware and signal processing."
+                        data-id="Spesialisasi dalam teknologi audio-visual dan elektronika, membangun fondasi kuat dalam perangkat keras dan pemrosesan sinyal."
+                        data-zh="专攻视听技术和电子学，在硬件和信号处理方面打下坚实基础。">
+                        Specialized in audio-visual technology and electronics.
+                    </p>
+                </div>
             </div>
         </div>
-    </div><br><br><br>
+    </section>
 
-    <div class="container mt-5" id="portfolio">
-        <h1 style="text-align:center;">SERTIFIKAT</h1><br>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/Screenshot 2023-06-01 111835.png" class="card-img-top" alt="Proyek 1">
-                
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title" data-en="Technology Stack" data-id="Tumpukan Teknologi" data-zh="技术栈">Technology Stack
+        </h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                <h3 data-en="Frontend Development" data-id="Pengembangan Frontend" data-zh="前端开发">Frontend Development
+                </h3>
+                <div class="skill-list">
+                    <span class="skill-item">HTML</span>
+                    <span class="skill-item">CSS</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">React</span>
+                    <span class="skill-item">Tailwind</span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/Screenshot 2023-07-08 160102.png" class="card-img-top" alt="Proyek 2">
-                  
+
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                <h3 data-en="Backend Development" data-id="Pengembangan Backend" data-zh="后端开发">Backend Development</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Node.js</span>
+                    <span class="skill-item">Express</span>
+                    <span class="skill-item">PHP</span>
+                    <span class="skill-item">MySQL</span>
+                    <span class="skill-item">MongoDB</span>
+                    <span class="skill-item">REST API</span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/sertif.jpg" class="card-img-top" alt="Proyek 3">
-                  
+
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-microchip"></i></div>
+                <h3 data-en="IoT & Electronics" data-id="IoT & Elektronika" data-zh="物联网与电子">IoT & Electronics</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Arduino</span>
+                    <span class="skill-item">Raspberry Pi</span>
+                    <span class="skill-item">ESP32</span>
+                    <span class="skill-item">Sensors</span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/p1.jpg" class="card-img-top" alt="Proyek 4">
-                  
+
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                <h3 data-en="AI & Machine Learning" data-id="AI & Machine Learning" data-zh="人工智能与机器学习">AI & Machine
+                    Learning</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Python</span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/Screenshot 2023-08-28 191754.png" class="card-img-top" alt="Proyek 5">
-                   
+
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                <h3 data-en="Tools & DevOps" data-id="Alat & DevOps" data-zh="工具与运维">Tools & DevOps</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Git</span>
+                    <span class="skill-item">VS Code</span>
+                    <span class="skill-item">Figma</span>
+                    <span class="skill-item">Cursor</span>
+                    <span class="skill-item">Android Studio</span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/Screenshot 2023-08-28 191735.png" class="card-img-top" alt="Proyek 6">
-                   
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+        <h2 class="section-title" data-en="Certifications" data-id="Sertifikasi" data-zh="认证证书">Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-card" data-image="foto/Screenshot 2023-06-01 111835.png">
+                <div class="cert-image-container">
+                    <img src="foto/Screenshot 2023-06-01 111835.png" alt="Certificate 1">
+                </div>
+                <div class="cert-overlay">
+                    <i class="fas fa-search-plus zoom-icon"></i>
+                    <h4 data-en="Click to view" data-id="Klik untuk melihat" data-zh="点击查看">Click to view</h4>
                 </div>
             </div>
+            <div class="cert-card" data-image="foto/Screenshot 2023-07-08 160102.png">
+                <div class="cert-image-container">
+                    <img src="foto/Screenshot 2023-07-08 160102.png" alt="Certificate 2">
+                </div>
+                <div class="cert-overlay">
+                    <i class="fas fa-search-plus zoom-icon"></i>
+                    <h4 data-en="Click to view" data-id="Klik untuk melihat" data-zh="点击查看">Click to view</h4>
+                </div>
+            </div>
+            <div class="cert-card" data-image="foto/sertif.jpg">
+                <div class="cert-image-container">
+                    <img src="foto/sertif.jpg" alt="Certificate 3">
+                </div>
+                <div class="cert-overlay">
+                    <i class="fas fa-search-plus zoom-icon"></i>
+                    <h4 data-en="Click to view" data-id="Klik untuk melihat" data-zh="点击查看">Click to view</h4>
+                </div>
+            </div>
+            <div class="cert-card" data-image="foto/p1.jpg">
+                <div class="cert-image-container">
+                    <img src="foto/p1.jpg" alt="Certificate 4">
+                </div>
+                <div class="cert-overlay">
+                    <i class="fas fa-search-plus zoom-icon"></i>
+                    <h4 data-en="Click to view" data-id="Klik untuk melihat" data-zh="点击查看">Click to view</h4>
+                </div>
+            </div>
+            <div class="cert-card" data-image="foto/Screenshot 2023-08-28 191754.png">
+                <div class="cert-image-container">
+                    <img src="foto/Screenshot 2023-08-28 191754.png" alt="Certificate 5">
+                </div>
+                <div class="cert-overlay">
+                    <i class="fas fa-search-plus zoom-icon"></i>
+                    <h4 data-en="Click to view" data-id="Klik untuk melihat" data-zh="点击查看">Click to view</h4>
+                </div>
+            </div>
+            <div class="cert-card" data-image="foto/Screenshot 2023-08-28 191735.png">
+                <div class="cert-image-container">
+                    <img src="foto/Screenshot 2023-08-28 191735.png" alt="Certificate 6">
+                </div>
+                <div class="cert-overlay">
+                    <i class="fas fa-search-plus zoom-icon"></i>
+                    <h4 data-en="Click to view" data-id="Klik untuk melihat" data-zh="点击查看">Click to view</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title" data-en="Featured Projects" data-id="Proyek Unggulan" data-zh="精选项目">Featured Projects
+        </h2>
+        <div class="project-grid">
+            <div class="project-card" data-image="foto/PROJECT1.png">
+                <div class="project-image-container">
+                    <img src="foto/PROJECT1.png" alt="Project 1" class="project-image">
+                </div>
+                <div class="cert-overlay">
+                    <i class="fas fa-search-plus zoom-icon"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" data-en="Fleet Maintenance Website - Petrokopindo Cipta Selaras"
+                        data-id="Website Pemeliharaan Armada - Petrokopindo Cipta Selaras"
+                        data-zh="车队维护网站 - Petrokopindo Cipta Selaras">
+                        Fleet Maintenance Website - Petrokopindo Cipta Selaras
+                    </h3>
+                    <p data-en="Designed and developed a fleet maintenance website from scratch, ready to be used dynamically on laptops and smartphones. This website is intended for Petrokopindo Cipta Selaras as a digital solution in fleet management and monitoring. Work started in December 2025 and is still ongoing."
+                        data-id="Merancang dan mengembangkan website pemeliharaan armada dari awal hingga siap digunakan secara dinamis di laptop dan smartphone. Website ini ditujukan untuk Petrokopindo Cipta Selaras sebagai solusi digital dalam pengelolaan dan pemantauan armada. Dikerjakan dari Desember 2025 hingga sekarang masih dikerjakan."
+                        data-zh="从头开始设计和开发车队维护网站，可在笔记本电脑和智能手机上动态使用。该网站面向Petrokopindo Cipta Selaras，作为车队管理和监控的数字解决方案。工作始于2025年12月，目前仍在进行中。">
+                        Designed and developed a fleet maintenance website from scratch, ready to be used dynamically on
+                        laptops and smartphones.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Tailwind CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-image="foto/BROSUR.png">
+                <div class="project-image-container">
+                    <img src="foto/BROSUR.png" alt="Project 2" class="project-image">
+                </div>
+                <div class="cert-overlay">
+                    <i class="fas fa-search-plus zoom-icon"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" data-en="Fleet Management Website - CV. Anugerah Sentani"
+                        data-id="Website Pemeliharaan Truck - CV. Anugerah Sentani"
+                        data-zh="车队管理网站 - CV. Anugerah Sentani">
+                        Fleet Management Website - CV. Anugerah Sentani
+                    </h3>
+                    <p data-en="Designed and developed a truck fleet maintenance website from scratch, ready to be used dynamically on laptops and smartphones. This website is intended for CV. Anugerah Sentani as a digital solution in fleet management and monitoring, with real-time data management features, operational efficiency, and an integrated system that supports better fleet management."
+                        data-id="Merancang dan mengembangkan website pemeliharaan armada truk dari awal hingga siap digunakan secara dinamis di laptop dan smartphone. Website ini ditujukan untuk CV. Anugerah Sentani sebagai solusi digital dalam pengelolaan dan pemantauan armada, dengan fitur manajemen data real-time, efisiensi operasional, serta sistem terintegrasi yang mendukung manajemen armada lebih baik."
+                        data-zh="从头开始设计和开发卡车车队维护网站，可在笔记本电脑和智能手机上动态使用。该网站面向CV. Anugerah Sentani，作为车队管理和监控的数字解决方案，具有实时数据管理功能、运营效率以及支持更好车队管理的集成系统。">
+                        Designed and developed a truck fleet maintenance website from scratch, ready to be used
+                        dynamically on laptops and smartphones.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="game">
+        <h2 class="section-title" data-en="Interactive Demos" data-id="Demo Interaktif" data-zh="互动演示">Interactive Demos
+        </h2>
+        <div class="games-container">
+            <!-- Snake Game -->
+            <div class="game-container">
+                <h3 class="game-title" data-en="Snake Game" data-id="Permainan Ular" data-zh="贪吃蛇游戏">Snake Game</h3>
+                <div class="score-display"><span data-en="Score" data-id="Skor" data-zh="分数">Score</span>: <span
+                        id="score">0</span></div>
+                <div id="game-board"></div>
+                <div class="game-controls">
+                    <button class="game-btn" id="start-button" data-en="Start Game" data-id="Mulai Permainan"
+                        data-zh="开始游戏">Start Game</button>
+                </div>
+                <p style="text-align: center; color: var(--text-secondary); margin-top: 1rem;"
+                    data-en="Use arrow keys to control" data-id="Gunakan tombol panah untuk kontrol" data-zh="使用方向键控制">
+                    Use arrow keys to control
+                </p>
+            </div>
+
+            <!-- Number Guessing Game -->
+            <div class="game-container">
+                <h3 class="game-title" data-en="Number Guessing Game" data-id="Permainan Tebak Angka" data-zh="猜数字游戏">
+                    Number Guessing Game</h3>
+                <div class="guess-container">
+                    <div class="guess-stats">
+                        <div class="stat-box">
+                            <div class="stat-label" data-en="Attempts" data-id="Percobaan" data-zh="尝试次数">Attempts</div>
+                            <div class="stat-value" id="attempts">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label" data-en="Best Score" data-id="Skor Terbaik" data-zh="最佳分数">Best
+                                Score</div>
+                            <div class="stat-value" id="bestScore">-</div>
+                        </div>
+                    </div>
+                    <div class="guess-feedback" id="guessFeedback" data-en="Guess a number between 1 and 100!"
+                        data-id="Tebak angka antara 1 hingga 100!" data-zh="猜一个1到100之间的数字！">
+                        Guess a number between 1 and 100!
+                    </div>
+                    <div class="guess-input-group">
+                        <input type="number" class="guess-input" id="guessInput" min="1" max="100" placeholder="?"
+                            disabled>
+                        <button class="game-btn" id="guessButton" disabled data-en="Guess" data-id="Tebak"
+                            data-zh="猜测">Guess</button>
+                    </div>
+                    <div class="game-controls">
+                        <button class="game-btn" id="startGuessGame" data-en="Start Game" data-id="Mulai Permainan"
+                            data-zh="开始游戏">Start Game</button>
+                        <button class="game-btn" id="resetGuessGame" style="display: none;" data-en="New Game"
+                            data-id="Permainan Baru" data-zh="新游戏">New Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title" data-en="Get In Touch" data-id="Hubungi Saya" data-zh="联系方式">Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <h3 data-en="Email" data-id="Email" data-zh="电子邮件">Email</h3>
+                <a href="mailto:faiq69bikejr@gmail.com">faiq69bikejr@gmail.com</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                <h3>WhatsApp</h3>
+                <a href="https://wa.me/085155476677">+62 851-5547-6677</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fab fa-github"></i></div>
+                <h3>GitHub</h3>
+                <a href="https://github.com/faiqismail" target="_blank">@faiqismail</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                <h3>Instagram</h3>
+                <a href="https://www.instagram.com/mail_radexs/" target="_blank">Mail_radexs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+
+        <p>&copy; 2026 Akhmad Fa'iq Ismail. <span data-en="Built with passion and cutting-edge technology."
+                data-id="Dibuat dengan semangat dan teknologi terkini." data-zh="以热情和尖端技术打造。">Built with passion and
+                cutting-edge technology.</span></p>
+    </footer>
+
+    <!-- Image Zoom Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <span class="modal-nav modal-prev" id="modalPrev"><i class="fas fa-chevron-left"></i></span>
+            <img src="" alt="Zoomed Image" id="modalImage">
+            <span class="modal-nav modal-next" id="modalNext"><i class="fas fa-chevron-right"></i></span>
         </div>
     </div>
 
-
-    <div class="container mt-5" id="portfolio">
-        <h1 style="text-align:center;">Pengalaman Proyek</h1><br>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/ppp.png" class="card-img-top" alt="Proyek 1">
-                   
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/PENGADUAN.png" class="card-img-top" alt="Proyek 2">
-                   
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="foto/BROSUR.png" class="card-img-top" alt="Proyek 3">
-                   
-                </div>
-            </div>
-           
-           
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    
-    <div class="container mt-5" id="snake-game">
-        <h2 style="text-align:center;">Snake Game</h2><br>
-        <div class="snake-game-container">
-            <div id="game-board"></div><br><br>
-            <button id="start-button">Mulai</button>
-        </div>
-    </div>
-<br>
-    <div class="container mt-5" id="contact">
-        <h2 style="text-align:center;">Contact</h2><br>
-        <p style="text-align:center;">
-            <img src="https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/112-gmail_email_mail-512.png" alt="Logo Email" width="30" height="30">
-            Untuk menghubungi saya, Anda dapat mengirim email ke: 
-            <a href="mailto:faiq69bikejr@gmail.com">faiq69bikejr@gmail.com</a>
-        </p>
-        <p style="text-align:center;">
-            <img src="https://www.tanjunglesung.com/wp-content/uploads/2018/12/logo-wa-whatsapp.png" alt="Logo WhatsApp" width="30" height="30">
-            Atau menghubungi melalui WhatsApp di: 
-            <a href="https://wa.me/085155476677">085155476677</a>
-        </p>
-    </div>
-
-    <br><br><br><br>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
     <script>
+        // Code snippets for effects
+        const codeSnippets = [
+            'const', 'function', 'return', 'if', 'else', 'for', 'while', 'class',
+            '{', '}', '(', ')', '[', ']', '=>', '===', '!==', '&&', '||',
+            'import', 'export', 'async', 'await', 'try', 'catch', 'throw',
+            '0', '1', '01', '10', '11', '00', 'true', 'false', 'null',
+            'HTML', 'CSS', 'JS', 'PHP', 'SQL', 'API', 'JSON', 'HTTP', 'React', 'Node'
+        ];
+
+        // Cursor Trail
+        const trails = [];
+        const trailLength = 20;
+
+        for (let i = 0; i < trailLength; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            document.body.appendChild(trail);
+            trails.push({
+                element: trail,
+                x: 0,
+                y: 0
+            });
+        }
+
+        // Custom Cursor with Enhanced Effects
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Update cursor position
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+
+            // Create LOTS of code effects - increased frequency to 30%
+            if (Math.random() < 0.3) {
+                createHoverCode(e.clientX, e.clientY);
+            }
+
+            // Create multiple codes at once sometimes
+            if (Math.random() < 0.15) {
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        createHoverCode(
+                            e.clientX + (Math.random() * 100 - 50),
+                            e.clientY + (Math.random() * 100 - 50)
+                        );
+                    }, i * 50);
+                }
+            }
+        });
+
+        // Smooth cursor trail animation
+        function animateTrails() {
+            // Update trail positions with delay
+            let tx = mouseX;
+            let ty = mouseY;
+
+            trails.forEach((trail, index) => {
+                const speed = 0.15 - (index * 0.005); // Each trail is progressively slower
+                trail.x += (tx - trail.x) * speed;
+                trail.y += (ty - trail.y) * speed;
+
+                trail.element.style.left = trail.x + 'px';
+                trail.element.style.top = trail.y + 'px';
+                trail.element.style.opacity = 0.6 - (index * 0.03);
+                trail.element.style.transform = `scale(${1 - (index * 0.03)})`;
+
+                tx = trail.x;
+                ty = trail.y;
+            });
+
+            requestAnimationFrame(animateTrails);
+        }
+
+        animateTrails();
+
+        // Create hover code effect - ENHANCED VERSION
+        function createHoverCode(x, y) {
+            const code = document.createElement('div');
+            code.className = 'hover-code';
+            code.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+
+            // Random position around cursor
+            const offsetX = Math.random() * 80 - 40;
+            const offsetY = Math.random() * 80 - 40;
+
+            code.style.left = (x + offsetX) + 'px';
+            code.style.top = (y + offsetY) + 'px';
+
+            // Random colors for variety
+            const colors = ['var(--accent-blue)', 'var(--accent-purple)', 'var(--accent-pink)', 'var(--accent-gold)'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            code.style.color = randomColor;
+            code.style.textShadow = `0 0 10px ${randomColor}`;
+
+            document.body.appendChild(code);
+
+            setTimeout(() => {
+                code.remove();
+            }, 1500);
+        }
+
+        // Create code burst on click
+        document.addEventListener('click', (e) => {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const angle = (Math.PI * 2 * i) / 8;
+                    const distance = 50 + Math.random() * 30;
+                    const x = e.clientX + Math.cos(angle) * distance;
+                    const y = e.clientY + Math.sin(angle) * distance;
+                    createHoverCode(x, y);
+                }, i * 30);
+            }
+        });
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Language Switcher
+        let currentLang = 'en';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-en]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (element.tagName === 'INPUT') {
+                        element.placeholder = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll Progress Bar & Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                backToTop.classList.add('show');
+            } else {
+                navbar.classList.remove('scrolled');
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Image Orientation Detection
+        function detectImageOrientation() {
+            document.querySelectorAll('.cert-card img, .project-image').forEach(img => {
+                img.addEventListener('load', function () {
+                    const card = this.closest('.cert-card') || this.closest('.project-card');
+                    if (this.naturalWidth > this.naturalHeight) {
+                        card.classList.add('landscape');
+                        card.classList.remove('portrait');
+                    } else {
+                        card.classList.add('portrait');
+                        card.classList.remove('landscape');
+                    }
+                });
+
+                if (img.complete) {
+                    img.dispatchEvent(new Event('load'));
+                }
+            });
+        }
+
+        // Image Zoom Modal
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+        let currentImageIndex = 0;
+        let imageElements = [];
+
+        function openModal(imageSrc, index) {
+            modal.classList.add('active');
+            modalImg.src = imageSrc;
+            currentImageIndex = index;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + imageElements.length) % imageElements.length;
+            modalImg.src = imageElements[currentImageIndex].getAttribute('data-image');
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % imageElements.length;
+            modalImg.src = imageElements[currentImageIndex].getAttribute('data-image');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            detectImageOrientation();
+
+            imageElements = [...document.querySelectorAll('.cert-card[data-image], .project-card[data-image]')];
+
+            imageElements.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    openModal(card.getAttribute('data-image'), index);
+                });
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modalPrev.addEventListener('click', showPrevImage);
+        modalNext.addEventListener('click', showNextImage);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (modal.classList.contains('active')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') showPrevImage();
+                if (e.key === 'ArrowRight') showNextImage();
+            }
+        });
+
+        // Snake Game
         document.addEventListener('DOMContentLoaded', function () {
             const board = document.getElementById('game-board');
             const startButton = document.getElementById('start-button');
+            const scoreDisplay = document.getElementById('score');
             const snakeSize = 20;
             const initialSnake = [{ x: 0, y: 0 }];
             let snake = [...initialSnake];
             let food = { x: 100, y: 100 };
             let direction = 'right';
             let gameInterval;
+            let score = 0;
 
             function drawSnake() {
                 board.innerHTML = '';
-                snake.forEach(segment => {
+                snake.forEach((segment, index) => {
                     const snakeElement = document.createElement('div');
-                    snakeElement.classList.add('snake');
-                    snakeElement.style.left = `${segment.x}px`;
-                    snakeElement.style.top = `${segment.y}px`;
+                    snakeElement.style.position = 'absolute';
+                    snakeElement.style.width = snakeSize + 'px';
+                    snakeElement.style.height = snakeSize + 'px';
+                    snakeElement.style.left = segment.x + 'px';
+                    snakeElement.style.top = segment.y + 'px';
+                    snakeElement.style.backgroundColor = index === 0 ? '#00d4ff' : '#7c3aed';
+                    snakeElement.style.borderRadius = '3px';
+                    snakeElement.style.boxShadow = '0 0 10px rgba(0, 212, 255, 0.5)';
                     board.appendChild(snakeElement);
                 });
             }
 
             function drawFood() {
                 const foodElement = document.createElement('div');
-                foodElement.classList.add('food');
-                foodElement.style.left = `${food.x}px`;
-                foodElement.style.top = `${food.y}px`;
+                foodElement.style.position = 'absolute';
+                foodElement.style.width = snakeSize + 'px';
+                foodElement.style.height = snakeSize + 'px';
+                foodElement.style.left = food.x + 'px';
+                foodElement.style.top = food.y + 'px';
+                foodElement.style.backgroundColor = '#ec4899';
+                foodElement.style.borderRadius = '50%';
+                foodElement.style.boxShadow = '0 0 15px rgba(236, 72, 153, 0.7)';
                 board.appendChild(foodElement);
             }
 
@@ -310,22 +2171,16 @@
                 const head = { ...snake[0] };
 
                 switch (direction) {
-                    case 'up':
-                        head.y -= snakeSize;
-                        break;
-                    case 'down':
-                        head.y += snakeSize;
-                        break;
-                    case 'left':
-                        head.x -= snakeSize;
-                        break;
-                    case 'right':
-                        head.x += snakeSize;
-                        break;
+                    case 'up': head.y -= snakeSize; break;
+                    case 'down': head.y += snakeSize; break;
+                    case 'left': head.x -= snakeSize; break;
+                    case 'right': head.x += snakeSize; break;
                 }
 
                 snake.unshift(head);
                 if (head.x === food.x && head.y === food.y) {
+                    score += 10;
+                    scoreDisplay.textContent = score;
                     generateFood();
                 } else {
                     snake.pop();
@@ -335,13 +2190,11 @@
             function generateFood() {
                 const maxX = board.clientWidth - snakeSize;
                 const maxY = board.clientHeight - snakeSize;
-
-                const x = Math.floor(Math.random() * maxX / snakeSize) * snakeSize;
-                const y = Math.floor(Math.random() * maxY / snakeSize) * snakeSize;
-
+                const x = Math.floor(Math.random() * (maxX / snakeSize)) * snakeSize;
+                const y = Math.floor(Math.random() * (maxY / snakeSize)) * snakeSize;
                 food = { x, y };
             }
-    
+
             function checkCollision() {
                 const head = snake[0];
                 return (
@@ -350,14 +2203,21 @@
                     snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)
                 );
             }
-    
+
             function updateGame() {
                 moveSnake();
                 if (checkCollision()) {
                     clearInterval(gameInterval);
-                    alert('Game Over!');
+                    const gameOverMsg = {
+                        en: `Game Over! Final Score: ${score}`,
+                        id: `Permainan Berakhir! Skor Akhir: ${score}`,
+                        zh: `游戏结束！最终分数：${score}`
+                    };
+                    alert(gameOverMsg[currentLang]);
                     snake = [...initialSnake];
                     direction = 'right';
+                    score = 0;
+                    scoreDisplay.textContent = score;
                     drawSnake();
                     drawFood();
                     startButton.style.display = 'block';
@@ -366,41 +2226,160 @@
                     drawFood();
                 }
             }
-    
+
             function handleKeyPress(event) {
                 switch (event.key) {
-                    case 'ArrowUp':
-                        direction = 'up';
-                        break;
-                    case 'ArrowDown':
-                        direction = 'down';
-                        break;
-                    case 'ArrowLeft':
-                        direction = 'left';
-                        break;
-                    case 'ArrowRight':
-                        direction = 'right';
-                        break;
+                    case 'ArrowUp': if (direction !== 'down') direction = 'up'; break;
+                    case 'ArrowDown': if (direction !== 'up') direction = 'down'; break;
+                    case 'ArrowLeft': if (direction !== 'right') direction = 'left'; break;
+                    case 'ArrowRight': if (direction !== 'left') direction = 'right'; break;
                 }
             }
-    
+
             function startGame() {
                 startButton.style.display = 'none';
                 snake = [...initialSnake];
                 direction = 'right';
+                score = 0;
+                scoreDisplay.textContent = score;
                 generateFood();
-                gameInterval = setInterval(updateGame, 300);
+                gameInterval = setInterval(updateGame, 150);
             }
-    
+
             startButton.addEventListener('click', startGame);
-    
+            document.addEventListener('keydown', handleKeyPress);
+
             generateFood();
             drawFood();
             drawSnake();
-            // gameInterval = setInterval(updateGame, 200); // Removed this line
-    
-            document.addEventListener('keydown', handleKeyPress);
+        });
+
+        // Number Guessing Game
+        (function () {
+            let targetNumber = 0;
+            let attempts = 0;
+            let bestScore = localStorage.getItem('bestGuessScore') || '-';
+            let gameActive = false;
+
+            const guessInput = document.getElementById('guessInput');
+            const guessButton = document.getElementById('guessButton');
+            const startGuessGame = document.getElementById('startGuessGame');
+            const resetGuessGame = document.getElementById('resetGuessGame');
+            const guessFeedback = document.getElementById('guessFeedback');
+            const attemptsDisplay = document.getElementById('attempts');
+            const bestScoreDisplay = document.getElementById('bestScore');
+
+            bestScoreDisplay.textContent = bestScore;
+
+            const messages = {
+                start: {
+                    en: 'Guess a number between 1 and 100!',
+                    id: 'Tebak angka antara 1 hingga 100!',
+                    zh: '猜一个1到100之间的数字！'
+                },
+                tooLow: {
+                    en: 'Too low! Try a higher number.',
+                    id: 'Terlalu rendah! Coba angka yang lebih tinggi.',
+                    zh: '太低了！试试更大的数字。'
+                },
+                tooHigh: {
+                    en: 'Too high! Try a lower number.',
+                    id: 'Terlalu tinggi! Coba angka yang lebih rendah.',
+                    zh: '太高了！试试更小的数字。'
+                },
+                correct: {
+                    en: '🎉 Correct! You won in {attempts} attempts!',
+                    id: '🎉 Benar! Anda menang dalam {attempts} percobaan!',
+                    zh: '🎉 正确！您在{attempts}次尝试中获胜！'
+                },
+                newRecord: {
+                    en: '🏆 New record!',
+                    id: '🏆 Rekor baru!',
+                    zh: '🏆 新纪录！'
+                }
+            };
+
+            function startNewGame() {
+                targetNumber = Math.floor(Math.random() * 100) + 1;
+                attempts = 0;
+                gameActive = true;
+                attemptsDisplay.textContent = '0';
+                guessInput.disabled = false;
+                guessButton.disabled = false;
+                guessInput.value = '';
+                guessInput.focus();
+                startGuessGame.style.display = 'none';
+                resetGuessGame.style.display = 'inline-block';
+                guessFeedback.textContent = messages.start[currentLang];
+                guessFeedback.className = 'guess-feedback';
+            }
+
+            function makeGuess() {
+                if (!gameActive) return;
+
+                const guess = parseInt(guessInput.value);
+                if (isNaN(guess) || guess < 1 || guess > 100) return;
+
+                attempts++;
+                attemptsDisplay.textContent = attempts;
+
+                if (guess === targetNumber) {
+                    gameActive = false;
+                    guessFeedback.className = 'guess-feedback correct';
+                    let message = messages.correct[currentLang].replace('{attempts}', attempts);
+
+                    if (bestScore === '-' || attempts < parseInt(bestScore)) {
+                        bestScore = attempts;
+                        localStorage.setItem('bestGuessScore', bestScore);
+                        bestScoreDisplay.textContent = bestScore;
+                        message += ' ' + messages.newRecord[currentLang];
+                    }
+
+                    guessFeedback.textContent = message;
+                    guessInput.disabled = true;
+                    guessButton.disabled = true;
+                } else if (guess < targetNumber) {
+                    guessFeedback.className = 'guess-feedback wrong';
+                    guessFeedback.textContent = messages.tooLow[currentLang];
+                } else {
+                    guessFeedback.className = 'guess-feedback wrong';
+                    guessFeedback.textContent = messages.tooHigh[currentLang];
+                }
+
+                guessInput.value = '';
+                guessInput.focus();
+            }
+
+            startGuessGame.addEventListener('click', startNewGame);
+            resetGuessGame.addEventListener('click', startNewGame);
+            guessButton.addEventListener('click', makeGuess);
+            guessInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') makeGuess();
+            });
+        })();
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.edu-card, .cert-card, .project-card, .skill-category, .contact-card, .game-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>
+
 </html>
